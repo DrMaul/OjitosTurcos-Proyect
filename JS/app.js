@@ -1,6 +1,7 @@
 //Definimos el array carrito, vacío inicialmente
 const carrito = [];
 
+
 //Booleano para setear si estoy en carrito.html o no
 let enCarrito = false;
 
@@ -11,14 +12,14 @@ const basePath = scriptPath.substring(0, scriptPath.lastIndexOf('/') + 1);
 
 //Array con los objetos productos
 const productos = [
-    {id: 1, nombre: "Pulsera Ojo Turco Clásica", precio: 500, img: `${basePath}../assets/img/productos/pulsera_ojoturco.png`},
-    {id: 2, nombre: "Pulsera Ojo Turco Riqueza", precio: 500, img:`${basePath}../assets/img/productos/pulsera_riqueza.png`},
-    {id: 3, nombre: "Atrapasueños", precio: 500, img:`${basePath}../assets/img/productos/atrapasueños.png`},
-    {id: 4, nombre: "Estatua de Buda", precio: 800, img:`${basePath}../assets/img/productos/buda_amor.png`},
-    {id: 5, nombre: "Pack 8 Sahumerios", precio: 500, img:`${basePath}../assets/img/productos/sahumerios.png`},
-    {id: 6, nombre: "Cascada de humo", precio: 1500, img:`${basePath}../assets/img/productos/cascadahumo.png`},
-    {id: 7, nombre: "Collar personalizado", precio: 300, img:`${basePath}../assets/img/productos/collares.png`},
-    {id: 8, nombre: "Pulsera 7 Nudos", precio: 500, img:`${basePath}../assets/img/productos/pulsera_7nudos.png`},
+    {id: 1, nombre: "Pulsera Ojo Turco Clásica", precio: 500, img: `${basePath}../assets/img/productos/pulsera_ojoturco.png`, destacado: true},
+    {id: 2, nombre: "Pulsera Ojo Turco Riqueza", precio: 500, img:`${basePath}../assets/img/productos/pulsera_riqueza.png`, destacado: false},
+    {id: 3, nombre: "Atrapasueños", precio: 500, img:`${basePath}../assets/img/productos/atrapasueños.png`, destacado: true},
+    {id: 4, nombre: "Estatua de Buda", precio: 800, img:`${basePath}../assets/img/productos/buda_amor.png`, destacado: true},
+    {id: 5, nombre: "Pack 8 Sahumerios", precio: 500, img:`${basePath}../assets/img/productos/sahumerios.png`, destacado: false},
+    {id: 6, nombre: "Cascada de humo", precio: 1500, img:`${basePath}../assets/img/productos/cascadahumo.png`, destacado: true},
+    {id: 7, nombre: "Collar personalizado", precio: 300, img:`${basePath}../assets/img/productos/collares.png`, destacado: true},
+    {id: 8, nombre: "Pulsera 7 Nudos", precio: 500, img:`${basePath}../assets/img/productos/pulsera_7nudos.png`, destacado: true},
 ]
 
 //Mostramos los productos desde el array de productos
@@ -50,6 +51,49 @@ function mostrarProductos(productosFiltrados) {
     
 
   }
+
+function mostrarProductosDestacados() {
+
+  const productosDestacados = productos.filter(producto => producto.destacado);
+
+  console.log(productosDestacados);
+
+  // Obtener los contenedores donde mostrarás los productos destacados
+  const contenedorDestacados1 = document.getElementById('articulosDestacados1');
+  const contenedorDestacados2 = document.getElementById('articulosDestacados2');
+
+  // Función para renderizar productos en un contenedor
+  const renderizarProductos = (productos, contenedor) => {
+    productos.forEach(producto => {
+      const divProducto = document.createElement("div");
+      divProducto.classList.add("col-4", "mb-4");
+
+      divProducto.innerHTML = `
+      <div class="card product-card">
+        <div class="card-img" onclick="agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.img}')">
+            <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">${producto.nombre}</h3>
+            <a class="card-button d-flex" onclick="agregarAlCarrito('${producto.id}','${producto.nombre}', ${producto.precio}, '${producto.img}')">
+            <p class="add-to-cart">Agregar al carrito</p>
+            <p class="price">$${producto.precio}</p>
+            </a>
+        </div>
+      </div>
+      `;
+      contenedor.appendChild(divProducto);
+    });
+  };
+
+  // Limitar la cantidad de productos a mostrar
+  const productosAMostrar1 = productosDestacados.slice(0, 3);
+  const productosAMostrar2 = productosDestacados.slice(3, 6);
+  // Renderizar los primeros 3 productos destacados
+  renderizarProductos(productosAMostrar1, contenedorDestacados1);
+  renderizarProductos(productosAMostrar2, contenedorDestacados2);
+
+}
 
 //Agregamos producto al carrito
 function agregarAlCarrito(id, nombre, precio, img) {
@@ -344,6 +388,7 @@ function actualizarModalCarrito() {
         console.log('Estás en index.html');
         enCarrito = false;
         mostrarProductos(productos);
+        mostrarProductosDestacados();
       }
 
       /**
