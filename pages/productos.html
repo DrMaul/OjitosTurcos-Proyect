@@ -159,14 +159,13 @@
     <!-- Hero -->
     <hero>
       <!-- Banner -->
-      
         <div class="container">
                 <div class="row">
                   
                   <div class="col">
                     
                     <div class="hero-content-cart">
-                      <h2 class="hero-title">tu Carrito</h2>
+                      <h2 class="hero-title">Productos</h2>
                     </div>
                     
                   </div>
@@ -183,10 +182,55 @@
     <!-- Cuerpo del Sitio -->
     <main>
 
-      <section class="mi-carrito">
+      <section class="list-productos">
         <div class="container">
           <div class="row">
-            <div class="col-xl-8 col-12">
+            <div class="col-xl-3 col-lg-4">
+              <div class="buscador">
+                <form method="get" action="">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar">
+                    <button type="submit" class="input-group-text">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+
+              <div class="sidebar">
+                <div class="sidebar-content">
+                  <h5>Categorias</h5>
+                  <div class="filtro-categoria">
+                    <ul>
+                      <li>
+                        <a href="">Pulseras</a>
+                      </li>
+                      <li>
+                        <a href="">Sahumerios</a>
+                      </li>
+                      <li>
+                        <a href="">Estatuas</a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                </div>
+                <div class="sidebar-content">
+                  <div class="total-compra">
+                    <h5>Total</h5>
+                    <h5 id="totalCompraSaldo"></h5>
+                  </div>
+                  <button class="btn btn-secondary my-button" type="submit">
+                    <a href="#">Ir a pagar</a>
+                  </button>
+                </div>
+              </div>
+
+
+
               <div class="tabla-carrito">
                 <table class="carta-tabla-carrito">
                   <tbody id="listaCompra">
@@ -202,7 +246,7 @@
             </div>
 
 
-            <div class="col-xl-4">
+            <div class="col-xl-9 col-lg-8">
               <div class="carrito-ticket">
                 <div class="ticket-content">
                   <h5>Detalle de tu Compra</h5>
