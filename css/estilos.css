@@ -413,57 +413,11 @@ main .list-productos .buscador .input-group .input-group-text svg {
   height: 30px;
   width: 30px;
 }
-main .list-productos .tabla-carrito {
-  border-radius: 45px;
-  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
-  background: #FAFAFA;
-  padding: 15px;
-  margin-bottom: 30px;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito {
-  width: 100%;
-  margin-bottom: 32px;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .titulos-tabla td {
-  padding: 32px 0 48px;
-  font-weight: 700;
-  font-size: 23px;
-  line-height: 140%;
-  color: rgb(12, 12, 12);
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito .img-item-carrito {
-  width: 23%;
-  padding-right: 20px;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito .img-item-carrito img {
-  max-width: 100%;
-  height: 200px;
-  vertical-align: middle;
-  border-radius: 15px;
-  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito td {
-  padding-bottom: 32px;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito .item-descrip {
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 140%;
-  color: rgb(12, 12, 12);
-  max-width: 30px;
-  word-wrap: break-word;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito .my-button {
-  padding: 12px;
-}
-main .list-productos .tabla-carrito .carta-tabla-carrito .item-carrito .my-button svg {
-  width: 24px;
-  height: 24px;
-}
 main .list-productos .sidebar {
   border-radius: 45px;
   background: #FAFAFA;
   box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 50px;
 }
 main .list-productos .sidebar .sidebar-content {
   padding: 30px;
@@ -520,18 +474,32 @@ main .list-productos .sidebar .sidebar-content .filtro-categoria span {
   color: rgb(12, 12, 12);
   margin-bottom: 0;
 }
-main .list-productos .sidebar .sidebar-content .total-compra {
-  display: flex;
-  justify-content: space-between;
+main .list-productos .sidebar .sidebar-content .filtro-colores {
   margin-bottom: 30px;
 }
-main .list-productos .sidebar .sidebar-content .my-button {
-  background-color: rgb(189, 157, 48);
+main .list-productos .sidebar .sidebar-content .filtro-colores .form-select {
+  color: rgb(12, 12, 12);
+  border-radius: 45px;
+  background-color: #FAFAFA;
+  border: 1px solid rgb(189, 157, 48);
 }
-main .list-productos .sidebar .sidebar-content .my-button:hover {
+main .list-productos .sidebar .sidebar-content .filtro-precio {
+  margin-bottom: 30px;
+}
+main .list-productos .sidebar .sidebar-content .filtro-precio .form-control {
+  color: rgb(12, 12, 12);
+  border-radius: 45px;
+  background-color: #FAFAFA;
+  border: 1px solid rgb(189, 157, 48);
+}
+main .list-productos .sidebar .my-button {
+  background-color: rgb(189, 157, 48);
+  margin-bottom: 30px;
+}
+main .list-productos .sidebar .my-button:hover {
   background-color: rgb(247, 234, 218);
 }
-main .list-productos .sidebar .sidebar-content .my-button a {
+main .list-productos .sidebar .my-button a {
   font-size: 34px;
 }
 main .about .about-content {
