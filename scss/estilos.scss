@@ -376,7 +376,8 @@ hero {
 /*Estilos del Main */
 main {
 
-    /* Estilos de Carrito */
+    /* Estilos de carrito.html */
+    /*Estilos de Carrito*/
     .mi-carrito {
         padding: 100px 0 50px 0;
 
@@ -520,7 +521,8 @@ main {
 
     }
 
-    /* Estilos de Productos */
+    /* Estilos de productos.html */
+    /*Estilos de Productos*/
     .list-productos {
         padding: 100px 0 50px 0;
 
@@ -692,7 +694,60 @@ main {
 
     }
 
+    /* Estilos de sobrenosotros.html */
+    /*Estilos de Sobre Nosotros*/
+    .sobre-nosotros{
+        padding: 100px 0 50px 0;
+        text-align: start;
 
+        .sobre-nosotros-titulo {
+            font-size: 40px;
+            line-height: 120%;
+            margin-bottom: 30px;
+        }
+
+        .contenido {
+            margin-bottom: 50px;
+
+            p {
+                margin-bottom: 30px;
+            }
+        
+        }
+
+        img {
+            border-radius: 45px;
+            box-shadow: $sombra $sombra-color;
+        }
+    }
+
+    .preguntas-frecuentes {
+        padding: 100px 0 50px 0;
+
+        .accordion {
+            margin: 30px 0 30px 0;
+            border-radius: 45px;
+            box-shadow: $sombra $sombra-color;
+
+            .accordion-item {
+                border-radius: 45px;
+                .accordion-header {
+                    border-radius: 45px;
+                }
+                .accordion-collapse {
+                    border-radius: 45px;
+
+                    .accordion-body {
+                        border-radius: 45px;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    /*Estilos de index.html */
     /*Estilos de About*/
     .about {
 
@@ -797,6 +852,7 @@ main {
         padding: 100px 0;
     }
 
+    /*Estilos de Comentarios */
     .comentarios {
         padding: 100px 0;
     }
