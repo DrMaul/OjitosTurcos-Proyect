@@ -269,6 +269,7 @@ main {
   /*Estilos de Productos*/
   /* Estilos de sobrenosotros.html */
   /*Estilos de Sobre Nosotros*/
+  /*Estilos de Preguntas Frecuentes*/
   /*Estilos de index.html */
   /*Estilos de About*/
   /*Estilos de Destacados */
@@ -532,20 +533,14 @@ main .preguntas-frecuentes {
 }
 main .preguntas-frecuentes .accordion {
   margin: 30px 0 30px 0;
-  border-radius: 45px;
-  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
 }
 main .preguntas-frecuentes .accordion .accordion-item {
   border-radius: 45px;
+  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
+  background-color: #FAFAFA;
 }
-main .preguntas-frecuentes .accordion .accordion-item .accordion-header {
-  border-radius: 45px;
-}
-main .preguntas-frecuentes .accordion .accordion-item .accordion-collapse {
-  border-radius: 45px;
-}
-main .preguntas-frecuentes .accordion .accordion-item .accordion-collapse .accordion-body {
-  border-radius: 45px;
+main .preguntas-frecuentes .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  background-color: rgb(247, 234, 218);
 }
 main .about .about-content {
   margin: 20px 0;

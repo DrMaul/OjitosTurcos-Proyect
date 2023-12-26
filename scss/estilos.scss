@@ -721,27 +721,27 @@ main {
         }
     }
 
+    /*Estilos de Preguntas Frecuentes*/
     .preguntas-frecuentes {
         padding: 100px 0 50px 0;
 
         .accordion {
             margin: 30px 0 30px 0;
-            border-radius: 45px;
-            box-shadow: $sombra $sombra-color;
 
             .accordion-item {
                 border-radius: 45px;
-                .accordion-header {
-                    border-radius: 45px;
-                }
-                .accordion-collapse {
-                    border-radius: 45px;
+                box-shadow: $sombra $sombra-color;
+                background-color: $color-white;
 
-                    .accordion-body {
-                        border-radius: 45px;
+                .accordion-header {
+                    .accordion-button:not(.collapsed){
+                        background-color: $color-crema;
                     }
                 }
+                
             }
+
+            
 
         }
     }
