@@ -746,6 +746,111 @@ main {
         }
     }
 
+        /* Estilos de contacto.html */
+    /*Estilos de Contacto*/
+    .contacto{
+        padding: 100px 0 50px 0;
+        text-align: start;
+
+        .contacto-titulo {
+            font-size: 40px;
+            line-height: 120%;
+            margin-bottom: 30px;
+        }
+
+        .contenido {
+            margin-bottom: 50px;
+
+            p {
+                margin-bottom: 30px;
+            }
+
+            .filtro-contacto {
+
+                display: flex;
+                justify-content: space-between;
+                margin: 30px 0 30px 0;
+
+                ul {
+                    font-weight: 400;
+                    font-size: 23px;
+                    line-height: 120%;
+                    color: $color-gris-dark;
+                    margin-bottom: 0;
+                    list-style: none;
+                    text-align: start;
+                    padding-left: 0;
+
+                    li {
+                        margin-bottom: 10px;
+
+                        a {
+                            text-decoration: none;
+                            color: $color-gris-dark;
+                            transition: 0.5s;
+
+                            &:hover {
+
+                                color:$color-gold;
+                            }
+                        }
+                    }
+
+                }
+
+                p{
+                    font-weight: 400;
+                    font-size: 23px;
+                    line-height: 120%;
+                    color: $color-gris-dark;
+                    margin-bottom: 0;
+                }
+
+                span {
+                    font-weight: 700;
+                    font-size: 23px;
+                    line-height: 140%;
+                    color: $color-gris-dark;
+                    margin-bottom: 0;
+                }
+
+            }
+
+            .form-contacto {
+                background-color: $color-white;
+                border-radius: 45px;
+                box-shadow: $sombra $sombra-color;
+                padding: 30px 15px;
+
+                .form-group {
+                    margin-bottom: 15px;
+
+                    label {
+                        font-weight: $negrita;
+                    }
+                }
+            }
+
+            .my-button {
+                background-color: $color-gold;
+                color: $color-gris-dark;
+                &:hover {
+                    background-color: $color-crema;
+                }
+                a{
+                    
+                    font-size: 34px;
+                }
+            }
+        
+        }
+
+        img {
+            border-radius: 45px;
+            box-shadow: $sombra $sombra-color;
+        }
+    }
+
 
     /*Estilos de index.html */
     /*Estilos de About*/

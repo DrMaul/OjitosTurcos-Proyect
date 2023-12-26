@@ -270,6 +270,8 @@ main {
   /* Estilos de sobrenosotros.html */
   /*Estilos de Sobre Nosotros*/
   /*Estilos de Preguntas Frecuentes*/
+  /* Estilos de contacto.html */
+  /*Estilos de Contacto*/
   /*Estilos de index.html */
   /*Estilos de About*/
   /*Estilos de Destacados */
@@ -541,6 +543,87 @@ main .preguntas-frecuentes .accordion .accordion-item {
 }
 main .preguntas-frecuentes .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
   background-color: rgb(247, 234, 218);
+}
+main .contacto {
+  padding: 100px 0 50px 0;
+  text-align: start;
+}
+main .contacto .contacto-titulo {
+  font-size: 40px;
+  line-height: 120%;
+  margin-bottom: 30px;
+}
+main .contacto .contenido {
+  margin-bottom: 50px;
+}
+main .contacto .contenido p {
+  margin-bottom: 30px;
+}
+main .contacto .contenido .filtro-contacto {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 30px 0;
+}
+main .contacto .contenido .filtro-contacto ul {
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 120%;
+  color: rgb(12, 12, 12);
+  margin-bottom: 0;
+  list-style: none;
+  text-align: start;
+  padding-left: 0;
+}
+main .contacto .contenido .filtro-contacto ul li {
+  margin-bottom: 10px;
+}
+main .contacto .contenido .filtro-contacto ul li a {
+  text-decoration: none;
+  color: rgb(12, 12, 12);
+  transition: 0.5s;
+}
+main .contacto .contenido .filtro-contacto ul li a:hover {
+  color: rgb(189, 157, 48);
+}
+main .contacto .contenido .filtro-contacto p {
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 120%;
+  color: rgb(12, 12, 12);
+  margin-bottom: 0;
+}
+main .contacto .contenido .filtro-contacto span {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 140%;
+  color: rgb(12, 12, 12);
+  margin-bottom: 0;
+}
+main .contacto .contenido .form-contacto {
+  background-color: #FAFAFA;
+  border-radius: 45px;
+  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
+  padding: 30px 15px;
+}
+main .contacto .contenido .form-contacto .form-group {
+  margin-bottom: 15px;
+}
+main .contacto .contenido .form-contacto .form-group label {
+  font-weight: 800;
+}
+main .contacto .contenido .my-button {
+  background-color: rgb(189, 157, 48);
+  color: rgb(12, 12, 12);
+}
+main .contacto .contenido .my-button:hover {
+  background-color: rgb(247, 234, 218);
+}
+main .contacto .contenido .my-button a {
+  font-size: 34px;
+}
+main .contacto img {
+  border-radius: 45px;
+  box-shadow: 42px 42px 24px rgba(0, 0, 0, 0.01), 24px 24px 20px rgba(0, 0, 0, 0.03), 11px 11px 15px rgba(0, 0, 0, 0.04), 3px 3px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05);
 }
 main .about .about-content {
   margin: 20px 0;
