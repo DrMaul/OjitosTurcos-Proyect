@@ -12,24 +12,24 @@ const basePath = scriptPath.substring(0, scriptPath.lastIndexOf('/') + 1);
 
 //Array con los objetos productos
 const productos = [
-    {id: 1, nombre: "Pulsera Ojo Turco Clásica", precio: 500, img: `${basePath}../assets/img/productos/pulsera_ojoturco.png`, destacado: true},
-    {id: 2, nombre: "Pulsera Ojo Turco Riqueza", precio: 500, img:`${basePath}../assets/img/productos/pulsera_riqueza.png`, destacado: false},
-    {id: 3, nombre: "Atrapasueños", precio: 500, img:`${basePath}../assets/img/productos/atrapasueños.png`, destacado: true},
-    {id: 4, nombre: "Estatua de Buda", precio: 800, img:`${basePath}../assets/img/productos/buda_amor.png`, destacado: true},
-    {id: 5, nombre: "Pack 8 Sahumerios", precio: 500, img:`${basePath}../assets/img/productos/sahumerios.png`, destacado: false},
-    {id: 6, nombre: "Cascada de humo", precio: 1500, img:`${basePath}../assets/img/productos/cascadahumo.png`, destacado: true},
-    {id: 7, nombre: "Collar personalizado", precio: 300, img:`${basePath}../assets/img/productos/collares.png`, destacado: true},
-    {id: 8, nombre: "Pulsera 7 Nudos", precio: 500, img:`${basePath}../assets/img/productos/pulsera_7nudos.png`, destacado: true},
+    {id: 1, nombre: "Pulsera Ojo Turco Clásica", precio: 500, img: `${basePath}../assets/img/productos/pulsera_ojoturco.png`, destacado: true, fechaIngreso: new Date('2023-03-10')},
+    {id: 2, nombre: "Pulsera Ojo Turco Riqueza", precio: 500, img:`${basePath}../assets/img/productos/pulsera_riqueza.png`, destacado: false, fechaIngreso: new Date('2023-04-13')},
+    {id: 3, nombre: "Atrapasueños", precio: 500, img:`${basePath}../assets/img/productos/atrapasueños.png`, destacado: true, fechaIngreso: new Date('2023-03-18')},
+    {id: 4, nombre: "Estatua de Buda", precio: 800, img:`${basePath}../assets/img/productos/buda_amor.png`, destacado: true, fechaIngreso: new Date('2023-06-21')},
+    {id: 5, nombre: "Pack 8 Sahumerios", precio: 500, img:`${basePath}../assets/img/productos/sahumerios.png`, destacado: false, fechaIngreso: new Date('2023-02-01')},
+    {id: 6, nombre: "Cascada de humo", precio: 1500, img:`${basePath}../assets/img/productos/cascadahumo.png`, destacado: true, fechaIngreso: new Date('2023-09-28')},
+    {id: 7, nombre: "Collar personalizado", precio: 300, img:`${basePath}../assets/img/productos/collares.png`, destacado: true, fechaIngreso: new Date('2023-12-20')},
+    {id: 8, nombre: "Pulsera 7 Nudos", precio: 500, img:`${basePath}../assets/img/productos/pulsera_7nudos.png`, destacado: true, fechaIngreso: new Date('2023-03-11')},
 ]
 
-//Mostramos los productos desde el array de productos
-function mostrarProductos(productosFiltrados) {
+//Mostramos los productos desde el array de productos, en productos.html
+function mostrarProductos() {
     const contenedor = document.getElementById("contenedorProductos");
     contenedor.innerHTML = ""; // Limpiar el contenedor
     
-    productosFiltrados.forEach(producto => {
+    productos.forEach(producto => {
         const divProducto = document.createElement("div");
-        divProducto.classList.add("col-lg-3", "col-6", "mb-4");
+        divProducto.classList.add("col-lg-4", "col-6", "mb-4");
         divProducto.setAttribute("data-aos", "zoom-in");
         divProducto.innerHTML = `
             <div class="card product-card">
@@ -52,6 +52,44 @@ function mostrarProductos(productosFiltrados) {
 
   }
 
+    //Mostramos los productos que son novedades, en index.html
+function mostrarProductosNovedades() {
+
+  // Ordenar productos por fecha de manera descendente (más reciente primero)
+  const productosOrdenados = productos.sort((a, b) => b.fechaIngreso - a.fechaIngreso);
+
+  // Mostrar solo los ultimos 6 productos agregados al stock
+  const productosNovedades = productosOrdenados.slice(0, 6);
+
+  // Obtener los contenedores donde mostrarás los productos novedades
+  const contenedor = document.getElementById("contenedorProductos");
+
+  
+  productosNovedades.forEach(producto => {
+    const divProducto = document.createElement("div");
+    divProducto.classList.add("col-4", "mb-4");
+
+    divProducto.innerHTML = `
+    <div class="card product-card">
+      <div class="card-img" onclick="agregarAlCarrito('${producto.id}', '${producto.nombre}', ${producto.precio}, '${producto.img}')">
+          <img src="${producto.img}" alt="Imagen de ${producto.nombre}">
+      </div>
+      <div class="card-body">
+          <h3 class="card-title">${producto.nombre}</h3>
+          <a class="card-button d-flex" onclick="agregarAlCarrito('${producto.id}','${producto.nombre}', ${producto.precio}, '${producto.img}')">
+          <p class="add-to-cart">Agregar al carrito</p>
+          <p class="price">$${producto.precio}</p>
+          </a>
+      </div>
+    </div>
+    `;
+    contenedor.appendChild(divProducto);
+  });
+  
+
+}
+
+  //Mostramos los productos destacados en carrusel, en index.html
 function mostrarProductosDestacados() {
 
   const productosDestacados = productos.filter(producto => producto.destacado);
@@ -384,12 +422,17 @@ function actualizarModalCarrito() {
         enCarrito = true;
         actualizarCompraCarrito();
       } 
-     else { //Si no estoy en carrito.html (de momento la otra opcion es index.html), desactivo el booleano y llamo a mostrarProductos
-        console.log('Estás en index.html');
+    else if (rutaActual.includes('productos.html')){
+      console.log('Estás en productos.html');
         enCarrito = false;
-        mostrarProductos(productos);
-        mostrarProductosDestacados();
-      }
+        mostrarProductos();
+    }
+    else { //Si no estoy en carrito.html (de momento la otra opcion es index.html), desactivo el booleano y llamo a mostrarProductos
+      console.log('Estás en index.html');
+      enCarrito = false;
+      mostrarProductosDestacados();
+      mostrarProductosNovedades();
+    }
 
       /**
        Tuve que implementar esta funcionalidad, ya que al estar conectando app.js desde dos archivos (index.html y carrito.html)
