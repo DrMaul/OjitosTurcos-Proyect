@@ -1,26 +1,8 @@
 //Definimos el array carrito, vacío inicialmente
 const carrito = [];
 
-
 //Booleano para setear si estoy en carrito.html o no
 let enCarrito = false;
-
-// Obtener la ubicación del script actual (app.js)
-const scriptPath = document.currentScript.src;
-const basePath = scriptPath.substring(0, scriptPath.lastIndexOf('/') + 1);
-
-
-//Array con los objetos productos
-const productos = [
-    {id: 1, nombre: "Pulsera Ojo Turco Clásica", precio: 500, img: `${basePath}../assets/img/productos/pulsera_ojoturco.png`, destacado: true, fechaIngreso: new Date('2023-03-10')},
-    {id: 2, nombre: "Pulsera Ojo Turco Riqueza", precio: 500, img:`${basePath}../assets/img/productos/pulsera_riqueza.png`, destacado: false, fechaIngreso: new Date('2023-04-13')},
-    {id: 3, nombre: "Atrapasueños", precio: 500, img:`${basePath}../assets/img/productos/atrapasueños.png`, destacado: true, fechaIngreso: new Date('2023-03-18')},
-    {id: 4, nombre: "Estatua de Buda", precio: 800, img:`${basePath}../assets/img/productos/buda_amor.png`, destacado: true, fechaIngreso: new Date('2023-06-21')},
-    {id: 5, nombre: "Pack 8 Sahumerios", precio: 500, img:`${basePath}../assets/img/productos/sahumerios.png`, destacado: false, fechaIngreso: new Date('2023-02-01')},
-    {id: 6, nombre: "Cascada de humo", precio: 1500, img:`${basePath}../assets/img/productos/cascadahumo.png`, destacado: true, fechaIngreso: new Date('2023-09-28')},
-    {id: 7, nombre: "Collar personalizado", precio: 300, img:`${basePath}../assets/img/productos/collares.png`, destacado: true, fechaIngreso: new Date('2023-12-20')},
-    {id: 8, nombre: "Pulsera 7 Nudos", precio: 500, img:`${basePath}../assets/img/productos/pulsera_7nudos.png`, destacado: true, fechaIngreso: new Date('2023-03-11')},
-]
 
 //Mostramos los productos desde el array de productos, en productos.html
 function mostrarProductos() {
@@ -399,57 +381,92 @@ function actualizarModalCarrito() {
 
  
 
-//Función para obtener los elementos del storage
+//Función para obtener los elementos del storage, y traer los datos del archivo JSON
   function obtenerCarritoStorage() {
     // Verificar si hay elementos en localStorage al inicio
-    document.addEventListener('DOMContentLoaded', function () {
-    // Obtener los elementos guardados en localStorage
-    const carritoStorage = JSON.parse(localStorage.getItem('carrito')) || [];
-    
+    document.addEventListener('DOMContentLoaded', async function () {
 
-    // Cargar los elementos en el carrito
-    if(carrito.length === 0){
-        carrito.push(...carritoStorage);
-    }
+      try {
+        // Obtener los productos desde el archivo JSON
+        const productos = await obtenerProductos();
+        // Obtener los elementos guardados en localStorage
+        const carritoStorage = JSON.parse(localStorage.getItem('carrito')) || [];
 
+        // Cargar los elementos en el carrito
+        if(carrito.length === 0){
+          carrito.push(...carritoStorage);
+        }
 
-    //Chequeo la ruta desde la cual estoy accediendo
-    const rutaActual = document.location.pathname;
-  
-    //Si estoy en carrito.html activo el booleano y llamo a la función actualizarCompraCarrito
-    if (rutaActual.includes('carrito.html')) {
-        console.log('Estás en carrito.html');
-        enCarrito = true;
-        actualizarCompraCarrito();
-      } 
-    else if (rutaActual.includes('productos.html')){
-      console.log('Estás en productos.html');
-        enCarrito = false;
-        mostrarProductos();
-    }
-    else { //Si no estoy en carrito.html (de momento la otra opcion es index.html), desactivo el booleano y llamo a mostrarProductos
-      console.log('Estás en index.html');
-      enCarrito = false;
-      mostrarProductosDestacados();
-      mostrarProductosNovedades();
-    }
-
-      /**
-       Tuve que implementar esta funcionalidad, ya que al estar conectando app.js desde dos archivos (index.html y carrito.html)
-       me generaba problemas al llamar a elementos del DOM unicos desde cada documento.
-       Por eso tuve que condicionar desde que ruta estoy accediendo al codigo, y asi llamar a sus funciones.
-       El booleano lo implemente xq al eliminar un producto del modal, no se me eliminaba de la sección "tu carrito" ya que
-       ya que la funcion eliminarDelCarrito no hacia el llamado a actualizarCompraCarrito, y no podia llamar a esa funcion desde index por el problema anterior
-       por lo tanto con el booleano, cuando sea true puedo hacer el llamado a actualizarCompraCarrito desde eliminarDelCarrito
-       * 
-       */
+        //Chequeo la ruta desde la cual estoy accediendo
+        const rutaActual = document.location.pathname;
       
+        //Si estoy en carrito.html activo el booleano y llamo a la función actualizarCompraCarrito
+        if (rutaActual.includes('carrito.html')) {
+            console.log('Estás en carrito.html');
+            enCarrito = true;
+            actualizarCompraCarrito();
+          } 
+        else if (rutaActual.includes('productos.html')){
+          console.log('Estás en productos.html');
+            enCarrito = false;
+            mostrarProductos(productos);
+        }
+        else if (rutaActual.includes('index.html')){ 
+          console.log('Estás en index.html');
+          enCarrito = false;
+          mostrarProductosDestacados(productos);
+          mostrarProductosNovedades(productos);
+        }
+        else { 
+          enCarrito = false;
+        }
 
-    // Actualizar el contador del carrito
-    actualizarContadorCarrito();
 
+
+          /**
+           Tuve que implementar esta funcionalidad, ya que al estar conectando app.js desde varios archivos
+          me generaba problemas al llamar a elementos del DOM unicos desde cada documento.
+          Por eso tuve que condicionar desde que ruta estoy accediendo al codigo, y asi llamar a sus funciones.
+          El booleano lo implemente xq al eliminar un producto del modal, no se eliminaba de carrito.html
+          ya que la funcion eliminarDelCarrito no hacia el llamado a actualizarCompraCarrito, y no podia llamar a esa funcion desde otro archivo por el problema anterior
+          por lo tanto con el booleano, cuando sea true puedo hacer el llamado a actualizarCompraCarrito desde eliminarDelCarrito
+          * 
+          */
+          
+
+        // Actualizar el contador del carrito
+        actualizarContadorCarrito();
+
+
+    
+      }
+
+      catch (error) {
+        console.error('Error al cargar productos:', error);
+      }
 
     });
+}
+
+//Promesa que devuelve los datos del array desde el archivo productos.json
+function obtenerProductos() {
+  return new Promise((resolve, reject) => {
+      fetch('../json/productos.json')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`Error al obtener productos. Código HTTP ${response.status}`);
+              }
+              return response.json();
+          })
+          .then(data => {
+              productos = data; // Almacena los productos en la variable
+              resolve(data); // Resuelve la promesa con los productos
+          })
+          .catch(error => {
+              console.error('Error al obtener productos:', error);
+              reject(error); // Rechaza la promesa con el error
+          });
+  });
 }
 
 obtenerCarritoStorage();
