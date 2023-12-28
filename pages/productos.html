@@ -187,9 +187,9 @@
           <div class="row">
             <div class="col-xl-3 col-lg-4">
               <div class="buscador">
-                <form method="get" action="">
+                <form method="get" action="" class="buscador-form">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar">
+                    <input type="text" class="form-control" placeholder="Buscar" name="busqueda">
                     <button type="submit" class="input-group-text">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -206,13 +206,13 @@
                   <div class="filtro-categoria">
                     <ul>
                       <li>
-                        <a href="">Pulseras</a>
+                        <a href="#" onclick="buscarProductoCategoria('pulsera')">Pulseras</a>
                       </li>
                       <li>
-                        <a href="">Sahumerios</a>
+                        <a href="#" onclick="buscarProductoCategoria('sahumerio')">Sahumerios</a>
                       </li>
                       <li>
-                        <a href="">Estatuas</a>
+                        <a href="#" onclick="buscarProductoCategoria('estatua')">Estatuas</a>
                       </li>
                     </ul>
                   </div>
@@ -220,11 +220,13 @@
                 <div class="sidebar-content">
                   <h5>Colores</h5>
                   <div class="filtro-colores">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Seleccionar un color</option>
-                      <option value="1">Rojo</option>
-                      <option value="2">Azul</option>
-                      <option value="3">Rosa</option>
+                    <select id="seleccionColor" class="form-select" aria-label="Default select example" onchange="guardarColorSeleccionado()">
+                      <option value="0" selected>Seleccionar un color</option>
+                      <option value="rojo">Rojo</option>
+                      <option value="azul">Azul</option>
+                      <option value="rosa">Rosa</option>
+                      <option value="violeta">Violeta</option>
+                      <option value="verde">Verde</option>
                     </select>
 
                   </div>
@@ -235,17 +237,17 @@
                   <h5>Precio</h5>
                   <div class="row filtro-precio">
                     <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control" id="minPrecio" placeholder="Mínimo">
+                        <input type="text" class="form-control" id="minPrecio" placeholder="Mínimo" oninput="guardarPrecioSeleccionado()">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="maxPrecio" placeholder="Máximo">
+                        <input type="text" class="form-control" id="maxPrecio" placeholder="Máximo" oninput="guardarPrecioSeleccionado()">
                     </div>
                   </div>
 
                   
                 </div>
                   <button class="btn btn-secondary my-button" type="submit">
-                  <a href="#">Buscar</a>
+                  <a href="#" onclick="buscarProductoBoton()">Buscar</a>
                   </button>
               </div>
 
