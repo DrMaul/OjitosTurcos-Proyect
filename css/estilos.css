@@ -15,6 +15,7 @@ body {
   /*Estilos del Card productos */
   /*Estilos del Modal carrito */
   /*Estilos del Modal notificación al agregar producto a carrito */
+  /*Estilos del Modal notificación al agregar producto a carrito */
   /*Estilos del Card Comentarios */
 }
 body h1, body h2, body h3 {
@@ -144,6 +145,27 @@ body .custom-modal-alert.show {
   opacity: 1; /* Cuando tiene la clase 'show', la alerta es visible */
 }
 body .custom-modal-alert.fade {
+  opacity: 0; /* Cuando tiene la clase 'fade', la alerta se hace invisible */
+}
+body .custom-modal-alert-error {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  width: 400px;
+  padding: 1rem;
+  border: 1px solid #f18b8b;
+  border-radius: 0.25rem;
+  background-color: #f7a1a1;
+  color: rgb(12, 12, 12);
+  opacity: 0; /* Inicialmente, la alerta es invisible */
+  transition: opacity 0.5s ease; /* Transición de opacidad para la animación de entrada */
+}
+body .custom-modal-alert-error.show {
+  opacity: 1; /* Cuando tiene la clase 'show', la alerta es visible */
+}
+body .custom-modal-alert-error.fade {
   opacity: 0; /* Cuando tiene la clase 'fade', la alerta se hace invisible */
 }
 body .comment-card {
@@ -375,12 +397,11 @@ main .mi-carrito .carrito-ticket .ticket-content .total-compra {
 }
 main .mi-carrito .carrito-ticket .ticket-content .my-button {
   background-color: rgb(189, 157, 48);
+  color: rgb(12, 12, 12);
+  font-size: 34px;
 }
 main .mi-carrito .carrito-ticket .ticket-content .my-button:hover {
   background-color: rgb(247, 234, 218);
-}
-main .mi-carrito .carrito-ticket .ticket-content .my-button a {
-  font-size: 34px;
 }
 main .list-productos {
   padding: 100px 0 50px 0;

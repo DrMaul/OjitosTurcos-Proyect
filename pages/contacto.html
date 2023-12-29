@@ -36,15 +36,16 @@
           <div id="totalCarrito" class="modal-body"></div>
           <div class="modal-footer">
             <button type="button" class="btn my-button bg-danger text-white" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn my-button bg-success text-white">Finalizar Compra</button>
+            <a href="./carrito.html" class="btn my-button bg-success text-white">Finalizar Compra</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Alerta de notificación -->
-    <div id="alertaNotificacion" class="alert alert-success alert-dismissible custom-modal-alert" role="alert" style="display: none;">
-      ¡El producto ha sido agregado al carrito!
+
+    <!-- Alerta de notificación error formulario -->
+    <div id="alertaNotiErrorForm" class="alert alert-danger alert-dismissible custom-modal-alert-error" role="alert" style="display: none;">
+      <p id="mensajeAlerta"></p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
@@ -222,27 +223,27 @@
                 <form class="form-contacto">
                   <div class="row">
                     <div class="col form-group">
-                      <label for="inputEmail4">Nombre</label>
-                      <input type="text" class="form-control" placeholder="Nombre">
+                      <label for="nombreInput">Nombre</label>
+                      <input type="text" class="form-control" placeholder="Nombre" id="nombreInput">
                     </div>
                     <div class="col form-group">
-                      <label for="inputPassword4">Apellido</label>
-                      <input type="text" class="form-control" placeholder="Apellido">
+                      <label for="apellidoInput">Apellido</label>
+                      <input type="text" class="form-control" placeholder="Apellido" id="apellidoInput">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    <label for="emailInput">Email</label>
+                    <input type="email" class="form-control" placeholder="Email" id="emailInput">
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail4">Teléfono</label>
-                    <input type="email" class="form-control" placeholder="Teléfono">
+                    <label for="telInput">Teléfono</label>
+                    <input type="email" class="form-control" placeholder="Teléfono" id="telInput">
                   </div>
                   <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Mensaje</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ingresar mensaje..."></textarea>
+                    <label for="mensajeInput">Mensaje</label>
+                    <textarea class="form-control" id="mensajeInput" rows="5" placeholder="Ingresar mensaje..."></textarea>
                   </div>
-                  <button type="button" class="btn btn-secondary my-button">Enviar</button>
+                  <button type="button" class="btn btn-secondary my-button" onclick="simularEnvioFormulario()">Enviar</button>
                 </form>
 
               </div>
@@ -358,5 +359,7 @@
     <script>
       AOS.init();
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

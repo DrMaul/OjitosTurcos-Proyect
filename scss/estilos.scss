@@ -207,6 +207,32 @@ body {
         }  
 
     }
+
+    /*Estilos del Modal notificación al agregar producto a carrito */
+    .custom-modal-alert-error {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050;
+        width: 400px;
+        padding: 1rem;
+        border: 1px solid #f18b8b;
+        border-radius: 0.25rem;
+        background-color: #f7a1a1;
+        color: $color-gris-dark;
+        opacity: 0; /* Inicialmente, la alerta es invisible */
+        transition: opacity 0.5s ease; /* Transición de opacidad para la animación de entrada */
+      
+        &.show {
+            opacity: 1; /* Cuando tiene la clase 'show', la alerta es visible */
+          }
+
+        &.fade {
+        opacity: 0; /* Cuando tiene la clase 'fade', la alerta se hace invisible */
+        }  
+
+    }
     
     /*Estilos del Card Comentarios */
     .comment-card {
@@ -437,7 +463,8 @@ main {
                     }
 
                     .my-button
-                    {
+                    {   
+                        
                         padding:12px;
                         svg {
                             width: 24px;
@@ -506,13 +533,12 @@ main {
 
                 .my-button {
                     background-color: $color-gold;
-
+                    color: $color-gris-dark;
+                    font-size: 34px;
                     &:hover {
                         background-color: $color-crema;
                     }
-                    a{
-                        font-size: 34px;
-                    }
+                   
                 }
                 
             }

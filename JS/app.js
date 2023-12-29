@@ -4,10 +4,12 @@ const carrito = [];
 //Booleano para setear si estoy en carrito.html o no
 let enCarrito = false;
 
+//Variables para setear parametros de búsqueda
 let colorBuscado = '';
 let valorMinInput = "";
 let valorMaxInput = "";
 
+//Funcion para buscar productos con el buscador de productos.html
 async function buscarProducto(productos) {
 
   const formularioBusqueda = document.querySelector('.buscador-form');
@@ -29,6 +31,7 @@ async function buscarProducto(productos) {
   
 }
 
+//Funcion para buscar productos seleccionando una categoria
 function buscarProductoCategoria(categoria){
 
   // Filtra los productos según el tipo seleccionado
@@ -37,17 +40,14 @@ function buscarProductoCategoria(categoria){
   mostrarProductos(productosFiltrados);
 }
 
-
+//Funcion que setear el color seleccionado
 function guardarColorSeleccionado() {
   // Obtén el valor seleccionado
   const seleccionColor = document.getElementById('seleccionColor');
-
- 
   colorBuscado = seleccionColor.value;
-
-
 }
 
+//Funcion que setear precios seleccionados
 function guardarPrecioSeleccionado(){
 
   valorMinInput = document.getElementById('minPrecio').value;
@@ -55,6 +55,7 @@ function guardarPrecioSeleccionado(){
 
 }
 
+//Funcion que para realizar la búsqueda, se activa con el boton
 function buscarProductoBoton(){
 
   if (colorBuscado === "0") {
@@ -82,9 +83,7 @@ function buscarProductoBoton(){
 
 }
 
-
-
-//Mostramos los productos desde el array de productos, en productos.html
+//Mostramos los productos desde el array de productos segun el array enviado por parámetro
 function mostrarProductos(prodBuscado) {
     const contenedor = document.getElementById("contenedorProductos");
     contenedor.innerHTML = ""; // Limpiar el contenedor
@@ -129,7 +128,7 @@ function mostrarProductosNovedades() {
   
   productosNovedades.forEach(producto => {
     const divProducto = document.createElement("div");
-    divProducto.classList.add("col-4", "mb-4");
+    divProducto.classList.add("col-lg-4", "col-6", "mb-4");
 
     divProducto.innerHTML = `
     <div class="card product-card">
@@ -155,9 +154,6 @@ function mostrarProductosNovedades() {
 function mostrarProductosDestacados() {
 
   const productosDestacados = productos.filter(producto => producto.destacado);
-
-  console.log(productosDestacados);
-
   // Obtener los contenedores donde mostrarás los productos destacados
   const contenedorDestacados1 = document.getElementById('articulosDestacados1');
   const contenedorDestacados2 = document.getElementById('articulosDestacados2');
@@ -459,7 +455,6 @@ function actualizarModalCarrito() {
     totalCompraSaldo.innerText = `$${totalComprado.toFixed(2)}`;
   }
 
- 
 
 //Función para obtener los elementos del storage, y traer los datos del archivo JSON
   function obtenerCarritoStorage() {
@@ -551,5 +546,112 @@ function obtenerProductos() {
   });
 }
 
+//Validamos el envio de formularios
+function simularEnvioFormulario(){
+  // Obtener datos del formulario
+  let nombre = document.getElementById('nombreInput').value;
+  let apellido = document.getElementById('apellidoInput').value;
+  let email = document.getElementById('emailInput').value;
+  let telefono = document.getElementById('telInput').value;
+  let mensaje = document.getElementById('mensajeInput').value;
+
+  // Validación de nombre y apellido (solo letras)
+  const nombreApellidoRegex = /^[a-zA-Z]+$/;
+  if (!nombreApellidoRegex.test(nombre) || !nombreApellidoRegex.test(apellido)) {
+    mostrarMensajeError('Error: el nombre y apellido no son válidos.');
+    return;
+  }
+
+  // Validación de formato email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    mostrarMensajeError('Por favor, ingrese un correo electrónico válido.');
+    return;
+  }
+
+  // Validación de teléfono (solo números)
+  const telefonoRegex = /^\d+$/;
+  if (!telefonoRegex.test(telefono)) {
+    mostrarMensajeError('Por favor, ingrese un teléfono válido.');
+    return;
+  }
+
+  // Validación de mensaje (máximo 400 caracteres)
+  if (mensaje.length > 400) {
+    mostrarMensajeError('El mensaje no puede superar los 400 caracteres.');
+    return;
+  }
+
+  // Al llegar acá el formulario será válido y enviamos el mensaje
+  Swal.fire("Mensaje enviado con éxito. En breve nos contactaremos. ¡Gracias!");
+
+
+}
+
+//Función que se llama en caso de que un parámetro del formulario no sea válido
+function mostrarMensajeError(mensaje) {
+  const alertaNotificacion = document.getElementById('alertaNotiErrorForm');
+  const mensajeAlerta = document.getElementById('mensajeAlerta');
+  alertaNotificacion.classList.remove('show', 'fade');
+  console.log(mensaje)
+
+  mensajeAlerta.innerText = mensaje;
+  alertaNotificacion.style.display = 'block';
+
+    // Aplicar la clase 'show' para activar la animación de entrada
+    setTimeout(function () {
+        alertaNotificacion.classList.add('show');
+      }, 50); 
+
+    // Ocultar la alerta después de unos segundos (opcional)
+    setTimeout(function() {
+        // Aplicar la clase 'fade' para activar la animación de salida
+        alertaNotificacion.classList.add('fade');
+  
+        // Quitar la clase 'show' al ocultar
+        alertaNotificacion.classList.remove('show');
+  
+        // Ocultar la alerta después de completar la animación de salida
+        setTimeout(function() {
+          alertaNotificacion.style.display = 'none';
+          alertaNotificacion.classList.remove('fade');
+        }, 500); // Duración de la animación de salida
+      }, 3000); // Ocultar después de 3 segundos
+
+  
+
+}
+
+//Función que muestra mensaje de exito al pagar
+function mostrarMensajePagoExitoso(){
+
+  if (carrito.length > 0) {
+    Swal.fire({
+    title: "Pago realizado con éxito ¡Muchas gracias!",
+    text: "Redirigiendo al inicio",
+    icon: "success"
+    });
+
+    localStorage.clear();
+
+    // Redirigir a la página index.html después de 3000 milisegundos (3 segundos)
+    setTimeout(function() {
+      window.location.href = '../index.html';
+    }, 4000);
+  }
+  else { //Cuando no haya productos en carrito, muestra mensaje de error
+    Swal.fire({
+      title: "Pago rechazado",
+      text: "No hay productos en el carrito",
+      icon: "error"
+      });
+
+  }
+
+  
+
+
+}
+
 obtenerCarritoStorage();
-//buscarProducto();
+
