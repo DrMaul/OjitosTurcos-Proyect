@@ -488,14 +488,21 @@ function actualizarModalCarrito() {
             buscarProducto(productos);
 
         }
-        else if (rutaActual.includes('index.html')){ 
+        else if (rutaActual.includes('contacto.html')){ 
+          console.log('Estás en contacto.html');
+          enCarrito = false;
+          
+        }
+        else if (rutaActual.includes('sobrenosotros.html')){ 
+          console.log('Estás en sobrenosotros.html');
+          enCarrito = false;
+          
+        }
+        else { 
           console.log('Estás en index.html');
           enCarrito = false;
           mostrarProductosDestacados(productos);
           mostrarProductosNovedades(productos);
-        }
-        else { 
-          enCarrito = false;
         }
 
 
